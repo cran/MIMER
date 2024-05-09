@@ -1,12 +1,13 @@
-0eef3838da490226796f0407b97a22a9 *DESCRIPTION
+58b997452a4f4602a5fae68070e40512 *DESCRIPTION
 9c14b56987ec9cd269b38f3a14b9d1b6 *NAMESPACE
+ee0262e14ea004bfff0723c410331ca5 *NEWS.md
 afbb938704099523cd93a5eb521fa1a4 *R/check_previous_events.R
 4cc45ac0eb81b3818e38b6bfa95c680e *R/clean_antibiotics.R
 ac8c59d04a7f3b616959988c9f5944f1 *R/clean_microbiology_events.R
 39b0e061197e642c4eeb9db34116e4c0 *R/common_utils.R
-2b8c054aa0f868b7cbb958c57aaaa693 *R/convert_antibiotics.R
+bf2750fee38c20f80281a96998b5fac8 *R/convert_antibiotics.R
 d5faa2d5395cc32bbb8a43bed7891bc9 *R/transpose_microbioevents.R
-50e555078b8c8109b7cda89c511e9a50 *README.md
+51b65375182a57f607d92639872254d0 *README.md
 0ccf357286e67243bacb27319e4aef5b *inst/extdata/combined_key.csv
 87232083f42c6a3b628b035db822b06b *inst/extdata/ndctext/missing_ndcs.csv
 c00d53f07587e40980d10db7ed1ed511 *man/check_previous_events.Rd
