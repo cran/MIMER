@@ -221,3 +221,93 @@ is_systemic_route <- function(route, class_names = relevant_routes_administratio
   return(is_systemic_route)
 }
 
+#Call this manually to create combined csv file using latest file from NDC website.
+manual_update_combined_ndc_file <- function(all_relevant_classes,
+                                            re_calculate_combined_key= TRUE,
+                                            zip_file_url="https://www.accessdata.fda.gov/cder/ndctext.zip",
+                                            zip_file_name="ndctext.zip",
+                                            extract_dir = "inst/extdata/ndctext") {
+  download_ndc_files_as_csv(zip_file_url,
+                            zip_file_name,
+                            extract_dir)
+
+  combined <- load_combined_key(include_missing_ndcs = T,
+                                re_calculate_combined_key)
+
+  subset(combined,
+         grepl(paste(all_relevant_classes, collapse = "|"),
+               combined$PHARM_CLASSES, ignore.case = T)) |>
+    write.csv(file.path(getwd(), "inst/extdata", "combined_key.csv"))
+
+  remove_files(extract_dir, c("product.csv","package.csv"))
+}
+
+#' Download and Convert NDC Files to CSV - To be used in the Manual Build Process
+#'
+#' This function downloads a zip file containing NDC (National Drug Code) text files from a specified URL,
+#' extracts the files to a directory, converts them to CSV format, and optionally deletes the original text files.
+#'
+#' @param zip_file_url The URL of the zip file containing NDC text files to download.
+#' @param zip_file_name The name of the downloaded zip file.
+#' @param extract_dir The directory where the NDC text files will be extracted.
+#'
+download_ndc_files_as_csv <-  function( zip_file_url="https://www.accessdata.fda.gov/cder/ndctext.zip",
+                                  zip_file_name="ndctext.zip",
+                                  extract_dir = "inst/extdata/ndctext"){
+  download.file(zip_file_url,
+                zip_file_name)
+
+  unzip(zip_file_name,
+        exdir = extract_dir)
+
+  file.remove(zip_file_name)
+
+  convert_all_directory_files_as_csv(extract_dir,
+                                     delete_text_files= TRUE)
+}
+
+#' Convert All Directory Files to CSV - To be used in the Manual Build Process
+#'
+#' This function converts all text files in a directory to CSV format.
+#'
+#' @param extract_dir The directory containing the text files to be converted.
+#' @param delete_text_files Logical indicating whether to delete the original text files after conversion.
+#'
+convert_all_directory_files_as_csv <- function(extract_dir, delete_text_files=FALSE){
+  extracted_files <- list.files(extract_dir, pattern = "\\.txt$", full.names = TRUE)
+  # Convert the extracted text files to CSV format
+  for (file in extracted_files) {
+    # Read the text file
+    data <- data.table::fread(file)
+
+    # Define the name for the CSV file
+    csv_file <- sub("\\.txt$", ".csv", file)
+
+    # Write the data to a CSV file
+    data.table::fwrite(data, csv_file)
+
+    if(delete_text_files){
+      file.remove(file)
+    }
+  }
+
+}
+
+#' Remove Files - To be used in the Manual Build Process
+#'
+#' This function removes files specified by their filenames from a given directory.
+#'
+#' @param extract_dir The directory from which files will be removed.
+#' @param filenames A character vector containing the names of the files to be removed.
+#'
+remove_files <- function(extract_dir, filenames){
+  for (file_name in filenames) {
+    file_path <- file.path(extract_dir, file_name)
+    if (file.exists(file_path)) {
+      file.remove(file_path)
+      cat("File", file_path, "removed successfully.\n")
+    } else {
+      cat("File", file_path, "does not exist.\n")
+    }
+  }
+}
