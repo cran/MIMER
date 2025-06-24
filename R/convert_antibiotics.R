@@ -168,6 +168,11 @@ ndc_to_antimicrobial <- function(ndc,
 }
 
 #' ndc_is_antimicrobial
+#'
+#' #' Note: Certain medications, such as Rifaximin, may not be considered antibiotics
+#' for all purposes despite their classification. Specific cases should be handled
+#' based on context and requirements.
+#'
 #' @title Check 'ndc' code is belongs to any Antimicrobial.
 #' @description
 #'  Function to check input 'ndc' code is belongs to any Antimicrobial or not.

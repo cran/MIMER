@@ -4,7 +4,7 @@ test_that("Convert NDC code to Antimicrobial", {
   test_df$ndc_to_antimicrobial <- as.character(ndc_to_antimicrobial(test_df$ndc))
 
   expected_df <- data.frame(ndc = c("67457033950","63323039923") ,
-                            ndc_to_antimicrobial = c("VAN","AMP"))
+                            ndc_to_antimicrobial = c("VAM","AMP"))
 
   expect_equal(data.frame(test_df),expected_df)
 })

@@ -1,6 +1,6 @@
 Package: MIMER
 Title: Data Wrangling for Antimicrobial Resistance Studies
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: 
     c(person("Anoop", "Velluva", , "anoop.velluva@liverpool.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0001-6198-6016")),
@@ -18,11 +18,14 @@ Encoding: UTF-8
 RoxygenNote: 7.2.3
 Imports: AMR, dplyr, fuzzyjoin, rlang, stringr, tidyr, testthat,
         data.table, reshape2
+Depends: R (>= 4.1.0)
 NeedsCompilation: no
-Packaged: 2024-06-16 20:45:17 UTC; anoopvelluva
-Author: Anoop Velluva [aut, cre] (<https://orcid.org/0009-0001-6198-6016>),
-  Alessandro Gerada [ctb] (<https://orcid.org/0000-0002-6743-4271>),
-  Alexander Howard [ctb] (<https://orcid.org/0000-0002-4195-6821>)
+Packaged: 2025-06-24 12:51:44 UTC; anoopvelluva
+Author: Anoop Velluva [aut, cre] (ORCID:
+    <https://orcid.org/0009-0001-6198-6016>),
+  Alessandro Gerada [ctb] (ORCID:
+    <https://orcid.org/0000-0002-6743-4271>),
+  Alexander Howard [ctb] (ORCID: <https://orcid.org/0000-0002-4195-6821>)
 Maintainer: Anoop Velluva <anoop.velluva@liverpool.ac.uk>
 Repository: CRAN
-Date/Publication: 2024-06-16 21:00:02 UTC
+Date/Publication: 2025-06-24 13:20:02 UTC

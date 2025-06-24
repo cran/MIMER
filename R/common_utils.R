@@ -16,7 +16,7 @@ clean_medication <- function(df,column_name) {
 
 populate_amr_antibiotics <- function(){
   #Loading Anti-Biotics Data from AMR Package
-  df_amr_antibiotics <- as.data.frame(AMR::antibiotics)
+  df_amr_antibiotics <- as.data.frame(AMR::antimicrobials)
 
   df_amr_antibiotics_lookup <- df_amr_antibiotics %>%
     select("name", "synonyms") %>%
